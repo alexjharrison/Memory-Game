@@ -7,7 +7,8 @@ class Container extends React.Component {
         message: "Click an image to begin!",
         curScore: 0,
         topScore: 0,
-        picked: []
+        picked: [],
+        listOrder: []
     }
 
     componentDidMount(){
@@ -42,11 +43,22 @@ class Container extends React.Component {
     resetList() {
         let arr = [];
         for (let i=0;i<12;i++) arr.push(false);
+        const newOrder = this.randomOrder();
         this.setState({
             curScore: 0,
             message: "You Guessed Incorrectly!",
-            picked: arr
+            picked: arr,
+            listOrder: newOrder
         })
+    }
+
+    randomOrder() {
+        let newOrder = [];
+        while(newOrder.length<12){
+            const rand = Math.floor(Math.random()*12);
+            if(!newOrder.includes(rand)) newOrder.push(rand);
+        }
+        return newOrder;
     }
 
     render() {
