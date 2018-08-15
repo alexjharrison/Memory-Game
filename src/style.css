@@ -1,0 +1,20 @@
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+.card {
+    width: 200px;
+    margin: 15px;
+    padding: 5px;
+}
+
+.pup {
+    margin: auto;
+    /* display: block; */
+    width: 300px;
+    overflow: hidden;
+}

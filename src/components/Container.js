@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "./Card";
 import Header from "./Header";
+import Jumbotron from "./Jumbotron";
 
 class Container extends React.Component {
     state = {
@@ -16,19 +17,19 @@ class Container extends React.Component {
     }
 
     cardClicked(num){
-        let newTopScore = this.topScore;
-        let newPicked = this.picked;
+        let newTopScore = this.state.topScore;
+        let newPicked = this.state.picked;
         
         //wrong guess
-        if(this.picked[num]===true){
+        if(this.state.picked[num]===true){
             this.resetList();
         }
         
         //right guess
         else {
-            const newCurScore = this.curScore + 1;
+            const newCurScore = this.state.curScore + 1;
             newPicked[num] = true;
-            if(newCurScore>this.topScore){
+            if(newCurScore>this.state.topScore){
                 newTopScore = newCurScore;
             }
             this.setState({
@@ -63,9 +64,14 @@ class Container extends React.Component {
 
     render() {
         return (
-            <div>
-                <Header />
-                <Card clicked={this.cardClicked} message="Wassssup from Card" />
+            <div >
+                <Header current={this.state.curScore} top={this.state.topScore}/>
+                <Jumbotron />
+                <div className="flex">
+                    {this.state.listOrder.map((pos,index)=>{
+                        console.log(this.state.listOrder);
+                    return <Card key={pos} location={index} dog={pos} clicked={this.cardClicked} />})}
+                </div>
             </div>
         )
     }

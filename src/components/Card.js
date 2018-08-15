@@ -1,7 +1,11 @@
 import React from "react";
 
 const Card = props => {
-    return <h2>{props.message}</h2>
+    return (
+        <div className="z-depth-3 card valign-wrapper" dataid={props.dog} onClick={props.clicked}>
+            <img className="pup" src={`images/${props.dog+1}.jpg`} alt="dog pick"/>
+        </div>
+    );
 }
 
 export default Card;
