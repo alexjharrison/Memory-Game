@@ -5,9 +5,6 @@ import "./style.css";
 
 const App = () => {
     return <Container />
-        // <Router>
-        //     <Route path="/" connection={Container}/>
-        // </Router>
 }
 
 export default App;

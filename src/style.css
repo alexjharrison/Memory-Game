@@ -18,3 +18,18 @@
     width: 300px;
     overflow: hidden;
 }
+
+.jumbotron {
+    background-image: url("/images/jumbotron.jpg");
+    height: 160px;
+    background-position: 53vw -70px; 
+}
+
+.nav-wrapper h4{
+    color:rgb(75, 75, 75);
+    margin: 0 30px;
+}
+.nav-wrapper h5{
+    color:rgb(75, 75, 75);
+    margin: 0 30px;
+}

@@ -16,17 +16,24 @@ class Container extends React.Component {
         this.resetList();
     }
 
-    cardClicked(num){
+    cardClicked = event => {
+        event.preventDefault();
+        console.log(event);
+        let num = event.target.getAttribute("dataid");
         let newTopScore = this.state.topScore;
         let newPicked = this.state.picked;
         
         //wrong guess
         if(this.state.picked[num]===true){
+            this.setState({
+                message: "You Guessed Incorrectly!"
+            })
             this.resetList();
         }
         
         //right guess
         else {
+            const newOrder = this.randomOrder();
             const newCurScore = this.state.curScore + 1;
             newPicked[num] = true;
             if(newCurScore>this.state.topScore){
@@ -36,24 +43,25 @@ class Container extends React.Component {
                 curScore: newCurScore,
                 topScore: newTopScore,
                 picked: newPicked,
-                message: "You Guessed Correctly!"
+                message: "You Guessed Correctly!",
+                listOrder: newOrder
+
             })
         }
     }
 
-    resetList() {
+    resetList = () => {
         let arr = [];
         for (let i=0;i<12;i++) arr.push(false);
         const newOrder = this.randomOrder();
         this.setState({
             curScore: 0,
-            message: "You Guessed Incorrectly!",
             picked: arr,
             listOrder: newOrder
         })
     }
 
-    randomOrder() {
+    randomOrder = () => {
         let newOrder = [];
         while(newOrder.length<12){
             const rand = Math.floor(Math.random()*12);
@@ -65,11 +73,10 @@ class Container extends React.Component {
     render() {
         return (
             <div >
-                <Header current={this.state.curScore} top={this.state.topScore}/>
+                <Header message={this.state.message} current={this.state.curScore} top={this.state.topScore}/>
                 <Jumbotron />
                 <div className="flex">
                     {this.state.listOrder.map((pos,index)=>{
-                        console.log(this.state.listOrder);
                     return <Card key={pos} location={index} dog={pos} clicked={this.cardClicked} />})}
                 </div>
             </div>
