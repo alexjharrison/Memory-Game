@@ -39,6 +39,6 @@
         visibility: hidden;
     }
     .nav-wrapper h4 {
-        text-align: center !important;
+        text-align: center;
     }
 }
