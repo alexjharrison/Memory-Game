@@ -33,3 +33,12 @@
     color:rgb(75, 75, 75);
     margin: 0 30px;
 }
+
+@media only screen and (max-width:695px) {
+    .nav-wrapper h4 {
+        visibility: hidden;
+    }
+    .nav-wrapper h4 {
+        text-align: center !important;
+    }
+}
