@@ -17,8 +17,6 @@ class Container extends React.Component {
     }
 
     cardClicked = event => {
-        event.preventDefault();
-        console.log(event);
         let num = event.target.getAttribute("dataid");
         let newTopScore = this.state.topScore;
         let newPicked = this.state.picked;
@@ -26,14 +24,24 @@ class Container extends React.Component {
         //wrong guess
         if(this.state.picked[num]===true){
             this.setState({
-                message: "You Guessed Incorrectly!"
+                message: "You Lose!"
             })
             this.resetList();
+        }
+
+        //won game
+        else if(this.state.curScore===11){
+            this.resetList();
+            this.setState({
+                topScore: 12,
+                message: "You Win!"
+            });
         }
         
         //right guess
         else {
             const newOrder = this.randomOrder();
+            console.log(newOrder);
             const newCurScore = this.state.curScore + 1;
             newPicked[num] = true;
             if(newCurScore>this.state.topScore){
@@ -45,7 +53,6 @@ class Container extends React.Component {
                 picked: newPicked,
                 message: "You Guessed Correctly!",
                 listOrder: newOrder
-
             })
         }
     }
